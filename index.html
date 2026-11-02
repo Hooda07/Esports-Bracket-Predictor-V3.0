@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#070b19"><meta name="description" content="Esports Arena V3 — C-powered tournament brackets and predictions.">
+<link rel="manifest" href="./manifest.webmanifest"><link rel="apple-touch-icon" href="./icons/icon-192.png">
+<title>Esports Arena — Bracket Predictor V3.0</title><link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+<div class="backdrop"><div class="gridfx"></div><i class="orb one"></i><i class="orb two"></i></div>
+<header class="topbar"><a class="brand" href="./"><span class="brand-mark">EA</span><span>ESPORTS<span class="brand-sub">ARENA / V3.0</span></span></a><div class="system"><i></i> C ENGINE ONLINE <b>WASM</b></div></header>
+<main class="shell">
+<section class="hero"><div class="eyebrow">COMPETITIVE INTELLIGENCE PLATFORM <span>● LIVE SYSTEM</span></div><h1>OWN THE<br><em>BRACKET.</em></h1><p>Build the tournament. Read the odds. Predict the champion.</p><div class="hero-meta"><span>01 / TOURNAMENT CONTROL</span><span>POWERED BY C11 + WEBASSEMBLY</span></div></section>
+<div id="notice" class="notice" role="status">Initializing C/WebAssembly engine…</div>
+<section class="toolbar glass" id="create-panel">
+ <div class="section-head"><div><span class="kicker">CONTROL DECK / 01</span><h2>Initialize tournament</h2></div><span class="tag">ORGANIZER</span></div>
+ <div class="fields"><label>Tournament name<input id="t-name" maxlength="63" value="Neon Masters"></label><label>Game title<input id="t-game" maxlength="39" value="Valorant"></label><label>Bracket size<select id="t-size"><option>4</option><option selected>8</option><option>16</option></select></label><div class="create-actions"><button class="btn primary" id="create">CREATE EVENT ↗</button><button class="btn subtle" id="demo">LOAD DEMO</button></div></div>
+</section>
+<section class="glass registration" id="registration" hidden>
+ <div class="section-head"><div><span class="kicker">ROSTER / 02</span><h2>Team registration</h2></div><span class="tag" id="team-count">0 / 8 TEAMS</span></div>
+ <div class="fields"><label>Team name<input id="team-name" maxlength="39" placeholder="Enter team name"></label><label>Tagline<input id="team-tag" maxlength="47" placeholder="The story behind your squad"></label><label>Team color<input id="team-color" type="color" value="#39e8ff"></label><button class="btn secondary" id="register">REGISTER TEAM +</button></div>
+ <div id="roster" class="roster"></div><div class="toolbar-actions"><button class="btn primary" id="start">GENERATE BRACKET ↗</button><button class="btn danger" id="reset">RESET EVENT</button></div>
+</section>
+<section id="live-panel" hidden>
+ <div class="section-head live-head"><div><span class="kicker">MATCH OPERATIONS / 03</span><h2 id="event-title">Tournament bracket</h2><p id="event-sub">Single elimination · C11 engine</p></div><div class="live-pill"><i></i> TOURNAMENT LIVE</div></div>
+ <div class="stats-grid" id="stats"></div>
+ <div class="toolbar-actions prediction-actions"><button class="btn primary" id="predict">RUN PREDICTION</button><button class="btn secondary" id="upset">UPSET SIMULATION</button><button class="btn subtle" id="clear-view">REAL RESULTS</button><button class="btn subtle" id="my-picks">MY BRACKET</button><button class="btn danger" id="reset-live">RESET EVENT</button></div>
+ <div class="content-grid"><section class="glass bracket-panel"><div class="section-head"><div><span class="kicker">ELIMINATION TREE / 04</span><h2>Championship bracket</h2></div><span class="tag">TAP A TEAM TO RECORD RESULT</span></div><div id="bracket-scroll" class="bracket-scroll"><div id="bracket" class="bracket"></div></div></section>
+ <aside class="side-stack"><section class="glass side-panel"><span class="kicker">POWER INDEX / 05</span><h2>Championship odds</h2><p class="muted">Monte Carlo simulation · 10,000 runs</p><div id="odds"></div><div id="odds-history"></div></section>
+ <section class="glass side-panel"><span class="kicker">PREDICTION ARENA / 06</span><h2>Leaderboard</h2><label class="player-label">Your callsign<input id="player-name" maxlength="24" placeholder="Player"></label><button class="btn subtle" id="add-player">ADD PLAYER +</button><div id="leaderboard"></div></section>
+ <section class="glass side-panel"><span class="kicker">ARENA DATA / 07</span><h2>Match analytics</h2><div id="analytics"></div></section></aside></div>
+ <section class="glass backup"><div><span class="kicker">DATA VAULT / 08</span><h2>Backup & restore</h2><p class="muted">Export your event or restore a validated JSON backup.</p></div><div class="backup-actions"><button class="btn secondary" id="export">EXPORT JSON ↓</button><label class="btn subtle file-btn">IMPORT JSON ↑<input id="import" type="file" accept="application/json,.json"></label></div></section>
+</section>
+<footer><span>ESPORTS ARENA V3.0</span><span>BUILT ON C11 · WEBASSEMBLY · OFFLINE FIRST</span></footer>
+</main>
+<div id="champion-modal" class="modal" hidden><div class="modal-card glass"><div class="trophy">✦</div><span class="kicker">THE ARENA HAS A CHAMPION</span><h2 id="champion-name"></h2><p>Victory is written into the bracket.</p><button id="close-champion" class="btn primary">RETURN TO ARENA</button></div></div>
+<script src="./wasm/esports.js"></script><script src="./js/app.js"></script>
+<script>
+if ('serviceWorker' in navigator && (location.protocol === 'https:' || location.hostname === 'localhost')) {
+  window.addEventListener('load', () => navigator.serviceWorker.register('./sw.js').catch(() => {}));
+}
+</script>
+</body></html>

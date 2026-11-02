@@ -1,0 +1,6 @@
+*.o
+*.a
+*.so
+*.wasm
+/wasm/esports.js
+.DS_Store

@@ -1,0 +1,12 @@
+Native test run (GCC and Clang, C11)
+=========================
+test_tournament: PASS
+test_bracket: PASS
+test_prediction: PASS
+
+JavaScript syntax: PASS (node --check js/app.js)
+Build script syntax: PASS (bash -n scripts/build-wasm.sh)
+Address/undefined sanitizers: PASS (GCC ASan + UBSan)
+
+Emscripten build: NOT RUN — emcc is not installed in the delivery environment.
+Browser WASM loading and PWA installation: NOT VERIFIED — requires generated WASM and a browser test environment.
